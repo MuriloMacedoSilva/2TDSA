@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ad1de7dc-315d-4c4e-8f78-dce0548a487d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto1/meuApp/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto1/meuApp/App.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto1/meuApp/app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto1/meuApp/assets/android-icon-background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto1/meuApp/assets/android-icon-foreground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto1/meuApp/assets/android-icon-monochrome.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto1/meuApp/assets/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto1/meuApp/assets/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto1/meuApp/assets/splash-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto1/meuApp/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto1/meuApp/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto1/meuApp/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto1/meuApp/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto2/components/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto2/components/App.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto2/components/app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto2/components/assets/android-icon-background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto2/components/assets/android-icon-foreground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto2/components/assets/android-icon-monochrome.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto2/components/assets/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto2/components/assets/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto2/components/assets/splash-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto2/components/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto2/components/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto2/components/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mobile/projeto2/components/tsconfig.json" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3BDzPxA0A4rBHVsBtDUIYd3JB5G" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/murilo/Documentos/GitHub/2TDSA/java/trabalho/project-1",
+    "settings.editor.selected.configurable": "terminal"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ad1de7dc-315d-4c4e-8f78-dce0548a487d" name="Changes" comment="" />
+      <created>1774038412057</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1774038412057</updated>
+    </task>
+    <servers />
+  </component>
+</project>
