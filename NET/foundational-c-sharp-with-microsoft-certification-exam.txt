@@ -1,0 +1,6 @@
+Exame de fundamentos de C# com certificação da Microsoft: Aprovado
+
+Número de questões: 80
+Respostas corretas: 74
+Porcentagem correta: 92.5%
+Tempo: 42:26

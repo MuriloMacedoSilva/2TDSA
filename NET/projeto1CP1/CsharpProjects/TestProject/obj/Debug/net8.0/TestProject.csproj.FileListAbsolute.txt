@@ -1,0 +1,15 @@
+/home/murilo/Documentos/GitHub/2TDSA/NET/projeto1CP1/CsharpProjects/TestProject/bin/Debug/net8.0/TestProject
+/home/murilo/Documentos/GitHub/2TDSA/NET/projeto1CP1/CsharpProjects/TestProject/bin/Debug/net8.0/TestProject.deps.json
+/home/murilo/Documentos/GitHub/2TDSA/NET/projeto1CP1/CsharpProjects/TestProject/bin/Debug/net8.0/TestProject.runtimeconfig.json
+/home/murilo/Documentos/GitHub/2TDSA/NET/projeto1CP1/CsharpProjects/TestProject/bin/Debug/net8.0/TestProject.dll
+/home/murilo/Documentos/GitHub/2TDSA/NET/projeto1CP1/CsharpProjects/TestProject/bin/Debug/net8.0/TestProject.pdb
+/home/murilo/Documentos/GitHub/2TDSA/NET/projeto1CP1/CsharpProjects/TestProject/obj/Debug/net8.0/TestProject.GeneratedMSBuildEditorConfig.editorconfig
+/home/murilo/Documentos/GitHub/2TDSA/NET/projeto1CP1/CsharpProjects/TestProject/obj/Debug/net8.0/TestProject.AssemblyInfoInputs.cache
+/home/murilo/Documentos/GitHub/2TDSA/NET/projeto1CP1/CsharpProjects/TestProject/obj/Debug/net8.0/TestProject.AssemblyInfo.cs
+/home/murilo/Documentos/GitHub/2TDSA/NET/projeto1CP1/CsharpProjects/TestProject/obj/Debug/net8.0/TestProject.csproj.CoreCompileInputs.cache
+/home/murilo/Documentos/GitHub/2TDSA/NET/projeto1CP1/CsharpProjects/TestProject/obj/Debug/net8.0/TestProject.sourcelink.json
+/home/murilo/Documentos/GitHub/2TDSA/NET/projeto1CP1/CsharpProjects/TestProject/obj/Debug/net8.0/TestProject.dll
+/home/murilo/Documentos/GitHub/2TDSA/NET/projeto1CP1/CsharpProjects/TestProject/obj/Debug/net8.0/refint/TestProject.dll
+/home/murilo/Documentos/GitHub/2TDSA/NET/projeto1CP1/CsharpProjects/TestProject/obj/Debug/net8.0/TestProject.pdb
+/home/murilo/Documentos/GitHub/2TDSA/NET/projeto1CP1/CsharpProjects/TestProject/obj/Debug/net8.0/TestProject.genruntimeconfig.cache
+/home/murilo/Documentos/GitHub/2TDSA/NET/projeto1CP1/CsharpProjects/TestProject/obj/Debug/net8.0/ref/TestProject.dll
