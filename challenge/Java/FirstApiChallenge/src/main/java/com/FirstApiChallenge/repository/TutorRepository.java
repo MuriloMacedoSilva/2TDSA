@@ -1,7 +1,7 @@
-package com.FirstApiChallenge.FirstApiChallenge.repository;
+package com.FirstApiChallenge.repository;
 
-import com.FirstApiChallenge.FirstApiChallenge.model.Tutor;
-import com.FirstApiChallenge.FirstApiChallenge.model.Veterinario;
+import com.FirstApiChallenge.model.Tutor;
+import com.FirstApiChallenge.model.Veterinario;
 import org.springframework.data.jpa.repository.JpaRepository; // Importação importante
 import org.springframework.stereotype.Repository;
 import java.util.Optional;

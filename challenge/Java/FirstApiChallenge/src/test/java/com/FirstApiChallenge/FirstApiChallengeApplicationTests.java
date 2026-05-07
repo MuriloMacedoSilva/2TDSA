@@ -1,4 +1,4 @@
-package com.FirstApiChallenge.FirstApiChallenge;
+package com.FirstApiChallenge;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

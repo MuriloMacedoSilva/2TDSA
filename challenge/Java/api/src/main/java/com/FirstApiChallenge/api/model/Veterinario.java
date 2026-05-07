@@ -1,10 +1,14 @@
-package com.FirstApiChallenge.FirstApiChallenge.model;
+package com.FirstApiChallenge.api.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "Veterinarios")
+@Getter
+@Setter
 public class Veterinario {
 
     @Id

@@ -1,4 +1,4 @@
-package com.FirstApiChallenge.FirstApiChallenge.dto;
+package com.FirstApiChallenge.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

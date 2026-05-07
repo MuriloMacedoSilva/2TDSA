@@ -1,6 +1,6 @@
-package com.FirstApiChallenge.FirstApiChallenge.dto;
+package com.FirstApiChallenge.dto;
 
-import com.FirstApiChallenge.FirstApiChallenge.model.Tutor;
+import com.FirstApiChallenge.model.Tutor;
 
 public record TutorResponseDTO(
         Long id,

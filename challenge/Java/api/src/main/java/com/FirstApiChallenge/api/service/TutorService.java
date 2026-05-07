@@ -1,15 +1,12 @@
-package com.FirstApiChallenge.FirstApiChallenge.service;
+package com.FirstApiChallenge.api.service;
 
-import com.FirstApiChallenge.FirstApiChallenge.dto.TutorRequestDTO;
-import com.FirstApiChallenge.FirstApiChallenge.dto.TutorResponseDTO;
-import com.FirstApiChallenge.FirstApiChallenge.model.Tutor;
-import com.FirstApiChallenge.FirstApiChallenge.model.Veterinario;
-import com.FirstApiChallenge.FirstApiChallenge.repository.TutorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.FirstApiChallenge.api.dto.TutorRequestDTO;
+import com.FirstApiChallenge.api.dto.TutorResponseDTO;
+import com.FirstApiChallenge.api.model.Tutor;
+import com.FirstApiChallenge.api.repository.TutorRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,7 +26,7 @@ public class TutorService {
     }
 
     @Transactional
-    public TutorResponseDTO criarTutor(TutorResponseDTO requestDTO) {
+    public TutorResponseDTO criarTutor(TutorRequestDTO requestDTO) {
 
 
         Tutor tutor = new Tutor();
