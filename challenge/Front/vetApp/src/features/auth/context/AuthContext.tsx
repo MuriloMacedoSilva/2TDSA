@@ -3,8 +3,9 @@ import { User } from '../types'
 
 type AuthContextData = {
     user: User | null
+    userOut: boolean
     signIn: (user: User) => void
-    signOut: () => void 
+    signOut: () => void
 }
 
 type AuthProviderProps = {
@@ -14,18 +15,21 @@ type AuthProviderProps = {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export function AuthProvider({ children }: AuthProviderProps) {
+    const [userOut, setUserOut] = useState(true)
+
     const [user, setUser] = useState<User | null>(null)
     
-    function signIn(userData: User) {
-        setUser(userData) 
+    function signIn(user: User) {
+        setUserOut(false)
+        setUser(user)
     }
 
     function signOut() {
-        setUser(null)
+        setUserOut(true)
     }
 
     return (
-        <AuthContext.Provider value={{ user, signIn, signOut }}>
+        <AuthContext.Provider value={{ userOut, signIn, signOut, user }}>
             {children}
         </AuthContext.Provider>
     )

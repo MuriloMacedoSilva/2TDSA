@@ -19,13 +19,15 @@ type NavigationProps = NativeStackNavigationProp<
 export default function RoleSelectScreen() {
   const navigation = useNavigation<NavigationProps>();
 
-  function handleSelect(role: "patient" | "vet") {
+
+
+  function handleSelect(role: "tutor" | "veterinario") {
     navigation.navigate("Login", { role });
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      <ScrollView style={styles.subContainer}>
         <View>
           <View style={styles.ImageContainer}>
             <Image
@@ -34,23 +36,25 @@ export default function RoleSelectScreen() {
             />
           </View>
 
-          <Text style={styles.h1}>
-            Com qual objetivo você irá usar a CLYVO VET?
-          </Text>
+          <View style={styles.textCont}>
+            <Text style={styles.h1}>
+              Com qual objetivo você irá usar a CLYVO VET?
+            </Text>
 
-          <TouchableOpacity
-            style={styles.Buttons}
-            onPress={() => handleSelect("patient")}
-          >
-            <Text style={styles.textButtons}>Sou Tutor(a)</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.Buttons}
+              onPress={() => handleSelect("tutor")}
+            >
+              <Text style={styles.textButtons}>Sou Tutor(a)</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.Buttons}
-            onPress={() => handleSelect("vet")}
-          >
-            <Text style={styles.textButtons}>Sou Veterinário(a)</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.Buttons}
+              onPress={() => handleSelect("veterinario")}
+            >
+              <Text style={styles.textButtons}>Sou Veterinário(a)</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -62,11 +66,16 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    height: 1000,
+    height: "auto",
+    width: "100%"
+  },
+
+  subContainer: {
+    borderWidth: 1,
+    width: "auto",
   },
 
   ImageContainer: {
-    width: "auto",
     top: 0,
     left: 0,
   },
@@ -75,10 +84,18 @@ const styles = StyleSheet.create({
     width: "auto",
   },
 
+  textCont: {
+    borderWidth: 1,
+    width: "auto",
+    flex: 1,
+    alignItems: "center",
+    marginBottom: 100,
+  },
+
   h1: {
     marginTop: 50,
     marginBottom: 70,
-    marginLeft: 40,
+    marginLeft: 20,
     fontSize: 22,
     flexWrap: "wrap",
   },
@@ -88,13 +105,13 @@ const styles = StyleSheet.create({
   },
 
   Buttons: {
+    width: "100%",
     borderWidth: 1,
     borderColor: "#1A223D",
     paddingTop: 20,
     paddingBottom: 20,
     paddingLeft: 20,
     paddingRight: 20,
-    marginBottom: 1, // só adicionei pra não colar um no outro
-    cursor: "pointer",
+    marginBottom: 1,
   },
 });

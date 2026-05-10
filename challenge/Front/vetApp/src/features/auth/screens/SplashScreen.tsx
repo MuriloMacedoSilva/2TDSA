@@ -31,15 +31,15 @@ export function SplashScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#FFF",
-    height: 700,
+    height: "auto",
   },
   logo: {
     width: 300,
     height: 300,
     resizeMode: "contain",
-    marginTop: 160,
   },
 });

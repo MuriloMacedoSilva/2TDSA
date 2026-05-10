@@ -1,5 +1,6 @@
 import axios from 'axios'
 
 export const api = axios.create({
-  baseURL: 'https://sua-api.com'
+  baseURL: 'http://192.168.15.46:8080',
+  timeout: 5000,
 })
