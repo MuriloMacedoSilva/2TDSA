@@ -5,11 +5,13 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Optional;
+
 @Entity
-@Table(name = "Veterinarios")
+@Table(name = "Veterinarian")
 @Getter
 @Setter
-public class Veterinario {
+public class Veterinarian {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,5 +42,7 @@ public class Veterinario {
 
     @Column(nullable = false, length = 14)
     private String cnpj;
+
+    private Optional<Tutor> tutors;
 
 }

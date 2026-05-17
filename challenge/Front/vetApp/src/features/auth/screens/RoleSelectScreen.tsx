@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
   },
 
   subContainer: {
-    borderWidth: 1,
     width: "auto",
   },
 
@@ -85,7 +84,6 @@ const styles = StyleSheet.create({
   },
 
   textCont: {
-    borderWidth: 1,
     width: "auto",
     flex: 1,
     alignItems: "center",
@@ -93,6 +91,7 @@ const styles = StyleSheet.create({
   },
 
   h1: {
+    width: "auto",
     marginTop: 50,
     marginBottom: 70,
     marginLeft: 20,

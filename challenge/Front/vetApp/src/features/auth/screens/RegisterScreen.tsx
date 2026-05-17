@@ -49,15 +49,20 @@ export function RegisterScreen() {
       return;
     }
 
+
+    if (senha.length < 8) {
+      Alert.alert("erro", "a senha deve ter no mínimo 8 caracteres")
+      return;
+    }
+
     setLoading(true);
     try {
       await api.post(`/${role}`, role === "tutor" ? { name, email, cpf, phoneNumber, senha, role } : { name, email, cpf, phoneNumber, senha, crmvNumero, crmvEstado, cnpj, clinica, role })
 
-      Alert.alert("sucesso, usuario criado")
       navigation.navigate("Login", { role })
     } catch(error){
-      const err = error as AxiosError<{ message: string }>;
-      Alert.alert("Erro", err.response?.data?.message || "Falha ao cadastrar")
+      const err = error as AxiosError<{ message:string }>;
+      Alert.alert("Erro", err.response?.data.message || "Falha ao cadastrar")
     } finally {
       setLoading(false)
     }

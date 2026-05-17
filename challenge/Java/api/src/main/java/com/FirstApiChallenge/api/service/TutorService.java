@@ -21,12 +21,28 @@ public class TutorService {
 
     @Transactional(readOnly = true)
     public Optional<TutorResponseDTO> buscarTutorPorCpf(String cpf) {
-        return tutorRepository.findByCpfTutor(cpf)
+        return tutorRepository.findByCpf(cpf)
                 .map(TutorResponseDTO::fromEntity);
     }
 
     @Transactional
-    public TutorResponseDTO criarTutor(TutorRequestDTO requestDTO) {
+    public TutorResponseDTO authenticateTutor(TutorRequestDTO requestDTO) {
+        Tutor tutor = tutorRepository.findByCpf(requestDTO.cpf())
+                .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
+
+        if (!tutor.getPassword().equals(requestDTO.password())){
+            throw new RuntimeException("senha incorreta");
+        }
+
+        return TutorResponseDTO.fromEntity(tutor);
+    }
+
+    @Transactional
+    public TutorResponseDTO createTutor(TutorRequestDTO requestDTO) {
+
+        if (tutorRepository.findByCpf(requestDTO.cpf()).isPresent()) {
+           throw new RuntimeException("CPF já cadastrado");
+        }
 
 
         Tutor tutor = new Tutor();
@@ -34,7 +50,9 @@ public class TutorService {
         tutor.setEmail(requestDTO.email());
         tutor.setCpf(requestDTO.cpf());
         tutor.setPhoneNumber(requestDTO.phoneNumber());
-        tutor.setSenha(requestDTO.senha());
+        tutor.setPassword(requestDTO.password());
+        tutor.setRole(requestDTO.role());
+
 
         Tutor tutorSalvo = tutorRepository.save(tutor);
 
@@ -42,12 +60,15 @@ public class TutorService {
     }
 
     @Transactional
-    public Optional<TutorResponseDTO> atualizarTutorPorCpf(String cpf, TutorRequestDTO requestDTO) {
-        return tutorRepository.findByCpfTutor(cpf).map(tutorExistente -> {
+    public Optional<TutorResponseDTO> updateTutorByCpf(String cpf, TutorRequestDTO requestDTO) {
+        return tutorRepository.findByCpf(cpf).map(tutorExistente -> {
             tutorExistente.setName(requestDTO.name());
             tutorExistente.setEmail(requestDTO.email());
             tutorExistente.setPhoneNumber(requestDTO.phoneNumber());
-            tutorExistente.setSenha(requestDTO.senha());
+            tutorExistente.setPassword(requestDTO.password());
+            tutorExistente.setRole(requestDTO.role());
+            tutorExistente.setAnimals(requestDTO.animals());
+            tutorExistente.setVeterinarians(requestDTO.veterinarians());
 
             Tutor tutorAtualizado = tutorRepository.save(tutorExistente);
 

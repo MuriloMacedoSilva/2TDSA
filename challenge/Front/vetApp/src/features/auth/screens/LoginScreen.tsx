@@ -68,8 +68,9 @@ export function LoginScreen() {
       signIn(userLogged)
 
     } catch(error) {
-      const err = error as AxiosError<{ message: string }>;
-      Alert.alert("Error", err.response?.data?.message || "Falha no Login")
+      const err = error as AxiosError<string>;
+        Alert.alert("Error", err.response?.data || "Falha no Login")
+    
     }finally{
       setLoadin(false);
     }

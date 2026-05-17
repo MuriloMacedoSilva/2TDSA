@@ -5,8 +5,10 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Optional;
+
 @Entity
-@Table(name = "Tutores")
+@Table(name = "Tutor")
 @Getter
 @Setter
 public class Tutor {
@@ -25,22 +27,47 @@ public class Tutor {
     private String cpf;
 
     @Column(nullable = false, length = 11)
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     @Column(nullable = false)
     @Size(min = 8, max = 11, message = "O campo deve ter entre 8 e 11 caracteres")
-    private String senha;
+    private String password;
+
+    @Column(nullable = false)
+    private String role;
+
+    private Optional<Veterinarian> veterinarians;
+
+    private Optional<Animal> animals;
 
     public Tutor() {
     };
 
-    public Tutor(String name, String email, String cpf, Integer phoneNumber, String senha) {
+    public Tutor(String name, String email, String cpf, String phoneNumber, String password, Optional<Veterinarian> veterinarians, Optional<Animal> animals) {
       this.name = name;
       this.email = email;
       this.cpf = cpf;
       this.phoneNumber = phoneNumber;
-      this.senha = senha;
+      this.password = password;
+      this.veterinarians = veterinarians;
+      this.animals = animals;
     };
+
+    public Optional<Animal> getAnimals() {
+        return animals;
+    }
+
+    public void setAnimals(Optional<Animal> animals) {
+        this.animals = animals;
+    }
+
+    public Optional<Veterinarian> getVeterinarians() {
+        return veterinarians;
+    }
+
+    public void setVeterinarians(Optional<Veterinarian> veterinarians) {
+        this.veterinarians = veterinarians;
+    }
 
     public Long getId() {
         return id;
@@ -74,19 +101,27 @@ public class Tutor {
         this.cpf = cpf;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
