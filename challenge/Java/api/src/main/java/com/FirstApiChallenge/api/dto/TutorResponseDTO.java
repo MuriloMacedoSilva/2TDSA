@@ -4,7 +4,7 @@ import com.FirstApiChallenge.api.model.Animal;
 import com.FirstApiChallenge.api.model.Tutor;
 import com.FirstApiChallenge.api.model.Veterinarian;
 
-import java.util.Optional;
+import java.util.Set;
 
 public record TutorResponseDTO(
         Long id,
@@ -14,8 +14,8 @@ public record TutorResponseDTO(
         String phoneNumber,
         String password,
         String role,
-        Optional<Animal> animals,
-        Optional<Veterinarian> veterinarians
+        Set<Animal> animals,
+        Set<Veterinarian> veterinarians
 ) {
     public static TutorResponseDTO fromEntity (Tutor tutor) {
         return new TutorResponseDTO(

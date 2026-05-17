@@ -5,7 +5,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Optional;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Tutor")
@@ -36,14 +37,20 @@ public class Tutor {
     @Column(nullable = false)
     private String role;
 
-    private Optional<Veterinarian> veterinarians;
+    @ManyToMany(mappedBy = "tutors")
+    private Set<Veterinarian> veterinarians = new HashSet<>();
 
-    private Optional<Animal> animals;
+    @ElementCollection
+    @CollectionTable(
+            name = "tutor_animals", // O Hibernate criará uma tabela auxiliar só para guardar os animais associados ao ID do tutor
+            joinColumns = @JoinColumn(name = "tutor_id")
+    )
+    private Set<Animal> animals = new HashSet<>();
 
     public Tutor() {
     };
 
-    public Tutor(String name, String email, String cpf, String phoneNumber, String password, Optional<Veterinarian> veterinarians, Optional<Animal> animals) {
+    public Tutor(String name, String email, String cpf, String phoneNumber, String password, Set<Veterinarian> veterinarians, Set<Animal> animals) {
       this.name = name;
       this.email = email;
       this.cpf = cpf;
@@ -53,19 +60,19 @@ public class Tutor {
       this.animals = animals;
     };
 
-    public Optional<Animal> getAnimals() {
+    public Set<Animal> getAnimals() {
         return animals;
     }
 
-    public void setAnimals(Optional<Animal> animals) {
+    public void setAnimals(Set<Animal> animals) {
         this.animals = animals;
     }
 
-    public Optional<Veterinarian> getVeterinarians() {
+    public Set<Veterinarian> getVeterinarians() {
         return veterinarians;
     }
 
-    public void setVeterinarians(Optional<Veterinarian> veterinarians) {
+    public void setVeterinarians(Set<Veterinarian> veterinarians) {
         this.veterinarians = veterinarians;
     }
 

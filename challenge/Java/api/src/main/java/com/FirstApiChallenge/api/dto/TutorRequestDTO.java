@@ -7,7 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
-import java.util.Optional;
+
+import java.util.Set;
 
 public record TutorRequestDTO(
 
@@ -33,8 +34,8 @@ public record TutorRequestDTO(
         @NotBlank(message = "role é obrigatório")
         String role,
 
-        Optional<Animal> animals,
+        Set<Animal> animals,
 
-        Optional<Veterinarian> veterinarians
+        Set<Veterinarian> veterinarians
 
 ) {}

@@ -54,9 +54,9 @@ public class TutorService {
         tutor.setRole(requestDTO.role());
 
 
-        Tutor tutorSalvo = tutorRepository.save(tutor);
+        Tutor tutorSaved = tutorRepository.save(tutor);
 
-        return TutorResponseDTO.fromEntity(tutorSalvo);
+        return TutorResponseDTO.fromEntity(tutorSaved);
     }
 
     @Transactional
@@ -70,9 +70,9 @@ public class TutorService {
             tutorExistente.setAnimals(requestDTO.animals());
             tutorExistente.setVeterinarians(requestDTO.veterinarians());
 
-            Tutor tutorAtualizado = tutorRepository.save(tutorExistente);
+            Tutor tutorUpdated = tutorRepository.save(tutorExistente);
 
-            return TutorResponseDTO.fromEntity(tutorAtualizado);
+            return TutorResponseDTO.fromEntity(tutorUpdated);
         }
         );
     }

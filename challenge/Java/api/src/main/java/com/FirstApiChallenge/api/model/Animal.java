@@ -5,10 +5,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
-@Table(name = "Animal")
+
 @Getter
 @Setter
+@Embeddable
 public class Animal {
 
     @Id
@@ -17,5 +17,17 @@ public class Animal {
 
     @Column
     private String name;
+
+    @Column
+    private Float weight;
+
+    @Column
+    private Float height;
+
+    private Integer age;
+
+    private String race;
+
+    private String history;
 
 }
