@@ -50,31 +50,33 @@ export function LoginScreen() {
   const { signIn } = useAuth();
 
   const handleLogin = async () => {
-
     if (!cpf || !password) {
-      Alert.alert("Erro", "Preencha todos os campos")
+      Alert.alert("Erro", "Preencha todos os campos");
       return;
     }
 
     setLoadin(true); 
 
     try {
-      await api.post(`/${role}/Login`, { cpf, password })
+      await api.post(`/${role}/Login`, { cpf, password });
 
-      const userLogged = await selectUser()
+      const userLogged = await selectUser();
 
-      if(!userLogged) return
+      if (!userLogged) return;
 
-      signIn(userLogged)
+      signIn(userLogged);
 
     } catch(error) {
-      const err = error as AxiosError<string>;
-        Alert.alert("Error", err.response?.data || "Falha no Login")
+      const err = error as AxiosError<{ message: string }>;
+      // Pega a mensagem customizada gerada pelo ControllerAdvice do Java
+      const errorMessage = err.response?.data?.message || "Falha no Login. Verifique suas credenciais.";
+      
+      Alert.alert("Erro de Autenticação", errorMessage);
     
-    }finally{
+    } finally {
       setLoadin(false);
     }
-  }
+  };
 
   function goToRegister() {
     navigation.navigate("Register", { role });

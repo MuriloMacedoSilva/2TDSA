@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         marginTop: 60,
     },
     h1: {
-        fontSize: 40,
+        fontSize: 34,
         fontWeight: "600",
         width: "100%",
         paddingLeft: "31%",

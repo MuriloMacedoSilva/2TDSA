@@ -51,13 +51,13 @@ public class Tutor {
     };
 
     public Tutor(String name, String email, String cpf, String phoneNumber, String password, Set<Veterinarian> veterinarians, Set<Animal> animals) {
-      this.name = name;
-      this.email = email;
-      this.cpf = cpf;
-      this.phoneNumber = phoneNumber;
-      this.password = password;
-      this.veterinarians = veterinarians;
-      this.animals = animals;
+        this.name = name;
+        this.email = email;
+        this.cpf = cpf;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+        this.veterinarians = veterinarians;
+        this.animals = animals;
     };
 
     public Set<Animal> getAnimals() {
