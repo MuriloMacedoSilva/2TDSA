@@ -1,17 +1,70 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useEffect, useState } from "react";
+import { FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { api } from "@/services/api";
+import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { AuthStackParamList } from "@/app/navigation/types";
+import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
+import { useAuth } from "@/features/auth/context/AuthContext";
+import { AxiosError } from "axios";
+import { Pets } from "../types";
 
+const Stack = createNativeStackNavigator<AuthStackParamList>();
 
+type NavigationProps = NativeStackNavigationProp<
+  AuthStackParamList,
+  "HomePets"
+>;
+
+type RouteProps = RouteProp<AuthStackParamList, "HomePets">;
 
 export default function HomePets() {
+
+    const navigation = useNavigation<NavigationProps>()
+
+    const route = useRoute<RouteProps>();
+
+    const { user } = useAuth();
+    const { role } = route.params;
+
+    const [animals, setAnimals] = useState<Pets[]>([])
+    const [erro, setErro] = useState<string>()
+
+    const goToRegisterPets = () => {
+        navigation.navigate("RegisterPets", { role:role, user:user })
+    }
+
+
+    const readPets = async () => {
+        try {
+            const response:[] = await api.get(`/${user?.role}/${user?.cpf}/ReadAnimals`)
+
+            setAnimals(response)
+
+            console.log(animals)
+            
+        } catch (error) {
+            const err = error as AxiosError<{ message: string }>
+            setErro(err.response?.data?.message)
+        }
+    }
+
+
+    useEffect(() => {
+        readPets();
+        console.log(animals)
+    }, [])
+
+
+
     return (
         <SafeAreaView>
             <ScrollView>
                 <View style={styles.header}>
                     <Ionicons name="menu" size={40} />
 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={goToRegisterPets}>
                         <Ionicons name="add-circle-outline" size={40} />
                     </TouchableOpacity>
                 </View>
@@ -20,9 +73,17 @@ export default function HomePets() {
                 </Text>
 
                 <View style={styles.animalCont}>
-                    <Text>
-                        Nenhum animal cadastrado ainda. Só você!
-                    </Text>
+                    {erro?<Text>{erro}</Text>:
+                    <FlatList 
+                    data={animals}
+                    renderItem={({item}) => (
+                        <View>
+                            <Text>
+                                {item.name}
+                            </Text>
+                        </View>
+                    )}
+                    />}
                 </View>
             </ScrollView>
         </SafeAreaView>

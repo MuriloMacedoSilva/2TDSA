@@ -18,6 +18,7 @@ import { useAuth } from "@/features/auth/context/AuthContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import HomePets from "@/features/tutorFlow/screens/HomePets";
+import RegisterPets from "@/features/tutorFlow/screens/RegisterPets";
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
@@ -227,6 +228,7 @@ export function PatientRoutes() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="PatientHome" component={PatientHome} />
       <Stack.Screen name="HomePets" component={HomePets} />
+      <Stack.Screen name="RegisterPets" component={RegisterPets} />
     </Stack.Navigator>
   );
 }

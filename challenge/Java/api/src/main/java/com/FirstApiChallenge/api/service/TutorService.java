@@ -2,12 +2,14 @@ package com.FirstApiChallenge.api.service;
 
 import com.FirstApiChallenge.api.dto.TutorRequestDTO;
 import com.FirstApiChallenge.api.dto.TutorResponseDTO;
+import com.FirstApiChallenge.api.model.Animal;
 import com.FirstApiChallenge.api.model.Tutor;
 import com.FirstApiChallenge.api.repository.TutorRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class TutorService {
@@ -20,7 +22,7 @@ public class TutorService {
 
 
     @Transactional(readOnly = true)
-    public Optional<TutorResponseDTO> buscarTutorPorCpf(String cpf) {
+    public Optional<TutorResponseDTO> searchTutorByCpf(String cpf) {
         return tutorRepository.findByCpf(cpf)
                 .map(TutorResponseDTO::fromEntity);
     }
@@ -52,6 +54,8 @@ public class TutorService {
         tutor.setPhoneNumber(requestDTO.phoneNumber());
         tutor.setPassword(requestDTO.password());
         tutor.setRole(requestDTO.role());
+        tutor.setAnimals(requestDTO.animals());
+        tutor.setVeterinarians(requestDTO.veterinarians());
 
 
         Tutor tutorSaved = tutorRepository.save(tutor);
@@ -61,19 +65,55 @@ public class TutorService {
 
     @Transactional
     public Optional<TutorResponseDTO> updateTutorByCpf(String cpf, TutorRequestDTO requestDTO) {
-        return tutorRepository.findByCpf(cpf).map(tutorExistente -> {
-            tutorExistente.setName(requestDTO.name());
-            tutorExistente.setEmail(requestDTO.email());
-            tutorExistente.setPhoneNumber(requestDTO.phoneNumber());
-            tutorExistente.setPassword(requestDTO.password());
-            tutorExistente.setRole(requestDTO.role());
-            tutorExistente.setAnimals(requestDTO.animals());
-            tutorExistente.setVeterinarians(requestDTO.veterinarians());
+        return tutorRepository.findByCpf(cpf).map(tutorExistent -> {
+            tutorExistent.setName(requestDTO.name());
+            tutorExistent.setEmail(requestDTO.email());
+            tutorExistent.setPhoneNumber(requestDTO.phoneNumber());
+            tutorExistent.setPassword(requestDTO.password());
+            tutorExistent.setRole(requestDTO.role());
+            tutorExistent.setAnimals(requestDTO.animals());
+            tutorExistent.setVeterinarians(requestDTO.veterinarians());
 
-            Tutor tutorUpdated = tutorRepository.save(tutorExistente);
+            Tutor tutorUpdated = tutorRepository.save(tutorExistent);
 
             return TutorResponseDTO.fromEntity(tutorUpdated);
         }
         );
     }
+
+    @Transactional
+    public TutorResponseDTO createAnimal(String cpf, Set<Animal> newAnimal) {
+        Tutor tutor = tutorRepository.findByCpf(cpf)
+                .orElseThrow(() -> new RuntimeException("Tutor não encointrado"));
+
+        for (Animal animal : tutor.getAnimals()) {
+            for (Animal animalNew : newAnimal) {
+                if (animal.getName().equals(animalNew.getName())) {
+                    throw new RuntimeException("Este animal já está cadastrado");
+                } else {
+                    tutor.setAnimals(newAnimal);
+                }
+            }
+        }
+
+        tutorRepository.save(tutor);
+
+        return TutorResponseDTO.fromEntity(tutor);
+
+    }
+
+    @Transactional
+    public Set<Animal> readAnimalsByTutor(String cpf) {
+        Tutor tutor = tutorRepository.findByCpf(cpf)
+                .orElseThrow(() -> new RuntimeException("Tutor não encontrado"));
+
+        Set<Animal> animals = tutor.getAnimals();
+
+        if (animals.isEmpty()){
+            throw new RuntimeException("Não há animais cadastrados");
+        }
+
+        return animals;
+    }
+
 }

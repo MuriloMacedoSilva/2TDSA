@@ -33,7 +33,7 @@ export function RegisterScreen() {
   // variáveis do usuario
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
-  const [senha, setSenha] = useState("")
+  const [password, setPassword] = useState("")
   const [cpf, setCpf] = useState("")
   const [phoneNumber, setPhoneNumber] = useState("")
   const [cnpj, setCnpj] = useState("")
@@ -44,20 +44,20 @@ export function RegisterScreen() {
   const [loading, setLoading] = useState(false)
 
   const handleRegister = async () => {
-    if (!name || !email || !senha) {
+    if (!name || !email || !password) {
       Alert.alert("erro", "Preencha todos os campos");
       return;
     }
 
 
-    if (senha.length < 8) {
+    if (password.length < 8) {
       Alert.alert("erro", "a senha deve ter no mínimo 8 caracteres")
       return;
     }
 
     setLoading(true);
     try {
-      await api.post(`/${role}`, role === "tutor" ? { name, email, cpf, phoneNumber, senha, role } : { name, email, cpf, phoneNumber, senha, crmvNumero, crmvEstado, cnpj, clinica, role })
+      await api.post(`/${role}`, role === "tutor" ? { name, email, cpf, phoneNumber, password, role } : { name, email, cpf, phoneNumber, password, crmvNumero, crmvEstado, cnpj, clinica, role })
 
       navigation.navigate("Login", { role })
     } catch(error){
@@ -78,7 +78,7 @@ export function RegisterScreen() {
 
           <TextInput placeholder="Nome" style={styles.input} onChangeText={setName} />
           <TextInput placeholder="Email" style={styles.input} onChangeText={setEmail} keyboardType="email-address" />
-          <TextInput placeholder="Senha" secureTextEntry style={styles.input} onChangeText={setSenha} />
+          <TextInput placeholder="Senha" secureTextEntry style={styles.input} onChangeText={setPassword} />
           <TextInput placeholder="CPF" style={styles.input} onChangeText={setCpf} keyboardType="numeric" />
           <TextInput placeholder="Tel" style={styles.input} onChangeText={setPhoneNumber} keyboardType="numeric" />
 

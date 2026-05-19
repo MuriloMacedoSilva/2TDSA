@@ -6,9 +6,11 @@ import com.FirstApiChallenge.api.dto.TutorResponseDTO;
 import com.FirstApiChallenge.api.service.TutorService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.FirstApiChallenge.api.model.Animal;
+
+import java.util.Set;
 
 @RestController
 @RequestMapping("/tutor")
@@ -40,9 +42,25 @@ public class TutorController {
 
     @GetMapping("/{cpf}")
     public ResponseEntity<TutorResponseDTO> searchTutorByCpf(@PathVariable String cpf){
-        return tutorService.buscarTutorPorCpf(cpf)
+        return tutorService.searchTutorByCpf(cpf)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @PutMapping("/{cpf}/CreateAnimal")
+    public ResponseEntity<TutorResponseDTO> createAnimal(@RequestBody @Valid TutorRequestDTO requestDTO) {
+        TutorResponseDTO response = tutorService.createAnimal(requestDTO.cpf(), requestDTO.animals());
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{cpf}/ReadAnimals")
+    public ResponseEntity<Set<Animal>> readAllAnimalsByCpf(TutorRequestDTO requestDTO) {
+        Set<Animal> response = tutorService.readAnimalsByTutor(requestDTO.cpf());
+
+        return ResponseEntity.ok(response);
+    }
+
+
 }
 

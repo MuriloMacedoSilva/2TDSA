@@ -33,8 +33,8 @@ export function LoginScreen() {
   const selectUser = async (): Promise<User | undefined> => {
     try{
       const response = await api.get(`${role}/${cpf}`)
-      const { id, name } = response.data;
-      const user = { id, name, role }
+      const { id, name, email, phoneNumber, password } = response.data;
+      const user = { id, name, email, cpf, phoneNumber, password, role }
       return user;
     }catch(error){
       const err = error as AxiosError<{ message: string }>
@@ -44,14 +44,14 @@ export function LoginScreen() {
   const [loading, setLoadin] = useState(false);
 
   // variáveis do usuario
-  const [senha, setSenha] = useState("")
+  const [password, setPassword] = useState("")
   const [cpf, setCpf] = useState("")
 
   const { signIn } = useAuth();
 
   const handleLogin = async () => {
 
-    if (!cpf || !senha) {
+    if (!cpf || !password) {
       Alert.alert("Erro", "Preencha todos os campos")
       return;
     }
@@ -59,7 +59,7 @@ export function LoginScreen() {
     setLoadin(true); 
 
     try {
-      await api.post(`/${role}/Login`, { cpf, senha })
+      await api.post(`/${role}/Login`, { cpf, password })
 
       const userLogged = await selectUser()
 
@@ -90,7 +90,7 @@ export function LoginScreen() {
 
           <TextInput placeholder="CPF" style={styles.input} onChangeText={setCpf}  />
 
-          <TextInput placeholder="Senha" secureTextEntry style={styles.input} onChangeText={setSenha} />
+          <TextInput placeholder="Senha" secureTextEntry style={styles.input} onChangeText={setPassword} />
 
           { loading ? <ActivityIndicator /> : <TouchableOpacity style={styles.button} onPress={handleLogin}>
             <Text style={styles.buttonText}>Entrar</Text>
