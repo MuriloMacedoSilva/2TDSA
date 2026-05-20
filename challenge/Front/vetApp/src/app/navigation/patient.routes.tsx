@@ -13,7 +13,7 @@ import {
   Linking
 } from "react-native";
 import { AuthStackParamList } from "./types";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/features/auth/context/AuthContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
