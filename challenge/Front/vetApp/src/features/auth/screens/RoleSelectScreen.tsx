@@ -21,7 +21,7 @@ export default function RoleSelectScreen() {
 
 
 
-  function handleSelect(role: "tutor" | "veterinario") {
+  function handleSelect(role: "tutor" | "veterinarian") {
     navigation.navigate("Login", { role });
   }
 
@@ -50,7 +50,7 @@ export default function RoleSelectScreen() {
 
             <TouchableOpacity
               style={styles.Buttons}
-              onPress={() => handleSelect("veterinario")}
+              onPress={() => handleSelect("veterinarian")}
             >
               <Text style={styles.textButtons}>Sou Veterinário(a)</Text>
             </TouchableOpacity>

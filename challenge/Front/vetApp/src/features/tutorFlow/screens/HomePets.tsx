@@ -68,9 +68,11 @@ export default function HomePets() {
                         <Ionicons name="add-circle-outline" size={40} />
                     </TouchableOpacity>
                 </View>
-                <Text style={styles.h1}>
+                <View style={styles.contH1}>
+                    <Text style={styles.h1}>
                     Animais
                 </Text>
+                </View>
 
                 <View style={styles.animalCont}>
                     {erro?<Text>{erro}</Text>:
@@ -122,5 +124,14 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         // borderWidth: 1,
         marginTop: 100,
+    },
+    contH1: {
+        width: "100%",
+        flex: 1,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingLeft: 30,
+        rowGap: 1,
     }
 })

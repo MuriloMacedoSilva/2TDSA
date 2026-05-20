@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const api = axios.create({
-  baseURL: 'https://api-challenge-clyvo.onrender.com/',
+  baseURL: 'http://localhost:8080/',
   timeout: 60000,
 })
 

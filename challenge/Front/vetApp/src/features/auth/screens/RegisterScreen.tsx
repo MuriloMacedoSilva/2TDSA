@@ -37,8 +37,8 @@ export function RegisterScreen() {
   const [cpf, setCpf] = useState("")
   const [phoneNumber, setPhoneNumber] = useState("")
   const [cnpj, setCnpj] = useState("")
-  const [crmvNumero, setCrmvNumero] = useState("")
-  const [crmvEstado, setCrmvEstado] = useState("")
+  const [crmvNumber, setCrmvNumber] = useState("")
+  const [crmvState, setCrmvState] = useState("")
   const [clinica, setClinica] = useState("")
 
   const [loading, setLoading] = useState(false)
@@ -57,7 +57,7 @@ export function RegisterScreen() {
 
     setLoading(true);
     try {
-      await api.post(`/${role}`, role === "tutor" ? { name, email, cpf, phoneNumber, password, role } : { name, email, cpf, phoneNumber, password, crmvNumero, crmvEstado, cnpj, clinica, role })
+      await api.post(`/${role}`, role === "tutor" ? { name, email, cpf, phoneNumber, password, role } : { name, email, cpf, phoneNumber, password, role, crmvNumber, crmvState, cnpj })
 
       navigation.navigate("Login", { role })
     } catch(error){
@@ -73,7 +73,7 @@ export function RegisterScreen() {
       <ScrollView>
         <View style={styles.container1}>
           <Text style={styles.title}>
-            {role === "veterinario" ? "Cadastro Veterinário" : "Cadastro Tutor"}
+            {role === "veterinarian" ? "Cadastro Veterinário" : "Cadastro Tutor"}
           </Text>
 
           <TextInput placeholder="Nome" style={styles.input} onChangeText={setName} />
@@ -82,11 +82,11 @@ export function RegisterScreen() {
           <TextInput placeholder="CPF" style={styles.input} onChangeText={setCpf} keyboardType="numeric" />
           <TextInput placeholder="Tel" style={styles.input} onChangeText={setPhoneNumber} keyboardType="numeric" />
 
-          {role === "veterinario" && (
+          {role === "veterinarian" && (
             <>
               <TextInput placeholder="CNPJ" style={styles.input} onChangeText={setCnpj} keyboardType="numeric" />
-              <TextInput placeholder="CRMV Número" style={styles.input} onChangeText={setCrmvNumero} keyboardType="numeric" />
-              <TextInput placeholder="CRMV Estado" style={styles.input} onChangeText={setCrmvEstado} />
+              <TextInput placeholder="CRMV Número" style={styles.input} onChangeText={setCrmvNumber} keyboardType="numeric" />
+              <TextInput placeholder="CRMV Estado" style={styles.input} onChangeText={setCrmvState} />
               <TextInput placeholder="Clínica" style={styles.input} onChangeText={setClinica} />
             </>
           )}

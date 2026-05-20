@@ -13,7 +13,7 @@ export function SplashScreen() {
 
     const startApp = async () => {
       // Tentativas de acordar a API hospedada no Render
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 2; i++) {
         try {
           if (!isMounted) return;
           setStatusText("Conectando ao servidor...");

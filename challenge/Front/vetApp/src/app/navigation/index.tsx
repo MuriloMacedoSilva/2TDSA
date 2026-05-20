@@ -21,7 +21,7 @@ export function Routes() {
     <NavigationContainer>
       {userOut === true ? (
         <AuthRoutes />
-      ) : user?.role === 'veterinario' ? (
+      ) : user?.role === 'veterinarian' ? (
         <VetRoutes />
       ) : (
         <PatientRoutes />

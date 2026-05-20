@@ -23,7 +23,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true); // App começa buscando os dados locais
 
-    // 1. QUANDO O APP ABRE: Verifica se o usuário já fez login anteriormente
+    // Verifica se o usuário já fez login anteriormente
     useEffect(() => {
         async function loadStorageData() {
             try {
@@ -45,7 +45,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         loadStorageData();
     }, []);
     
-    // 2. LOGANDO PELA PRIMEIRA VEZ: Guarda os dados que sua LoginScreen capturou
+    // Guarda os dados 
     async function signIn(userLogged: User) {
         try {
             setUserOut(false);
@@ -57,7 +57,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         }
     }
 
-    // 3. LOGOUT: Limpa a memória do celular para exigir login na próxima vez
+    // Limpa a memória do celular para exigir login na próxima vez
     async function signOut() {
         try {
             await AsyncStorage.removeItem(USER_STORAGE_KEY);

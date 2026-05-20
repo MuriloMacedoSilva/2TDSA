@@ -87,7 +87,7 @@ export function LoginScreen() {
       <ScrollView>
         <View style={styles.container2}>
           <Text style={styles.title}>
-            {role === "veterinario" ? "Login Veterinário" : "Login Tutor"}
+            {role === "veterinarian" ? "Login Veterinário" : "Login Tutor"}
           </Text>
 
           <TextInput placeholder="CPF" style={styles.input} onChangeText={setCpf}  />

@@ -13,7 +13,7 @@ import {
   Linking
 } from "react-native";
 import { AuthStackParamList } from "./types";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useAuth } from "@/features/auth/context/AuthContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
@@ -35,6 +35,7 @@ function PatientHome() {
   const route = useRoute<RouteProps>();
 
   const { user } = useAuth();
+  const { signOut } = useAuth();
 
   const role = "tutor";
 
@@ -43,6 +44,10 @@ function PatientHome() {
   const goToHomePets = () => {
     navigation.navigate("HomePets", { role: role, user: user });
   };
+
+  const goExit = () => {
+    signOut();
+  }
 
   useEffect(() => {
     const selectUserName = () => {
@@ -167,6 +172,16 @@ function PatientHome() {
             </View>
           </View>
         </View>
+
+
+        <TouchableOpacity onPress={goExit}>
+          <Text style={styles.exit}>
+            Sair <Ionicons name="exit" size={30} />
+          </Text>
+        </TouchableOpacity>
+
+
+        {/* ======================================================================================================== */}
 
         <View style={styles.footer}>
               <View style={styles.section}>
@@ -415,4 +430,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
   },
+  exit:{
+    fontSize: 29,
+    paddingLeft: 30,
+    paddingBottom: 30,
+  }
 });
