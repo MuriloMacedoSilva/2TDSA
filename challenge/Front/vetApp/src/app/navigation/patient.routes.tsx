@@ -1,4 +1,4 @@
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute, DrawerActions } from "@react-navigation/native";
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
@@ -19,8 +19,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import HomePets from "@/features/tutorFlow/screens/HomePets";
 import RegisterPets from "@/features/tutorFlow/screens/RegisterPets";
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { PatientDrawerContent } from './components/PatientDrawerContent';
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
+const Drawer = createDrawerNavigator();
 
 type NavigationProps = NativeStackNavigationProp<
   AuthStackParamList,
@@ -30,9 +33,7 @@ type NavigationProps = NativeStackNavigationProp<
 type RouteProps = RouteProp<AuthStackParamList, "PatientHome">;
 
 function PatientHome() {
-  const navigation = useNavigation<NavigationProps>();
-
-  const route = useRoute<RouteProps>();
+  const navigation = useNavigation<any>(); // Acessar drawer e stack
 
   const { user } = useAuth();
   const { signOut } = useAuth();
@@ -63,13 +64,8 @@ function PatientHome() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.subContainer}>
-        {/* <View style={styles.headerLogo}>
-          <View>
-            <Image source={require("../../../assets/Logo.png")} />
-          </View>
-        </View> */}
         <View style={styles.header}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
             <Ionicons
               name="menu"
               size={40}
@@ -181,70 +177,29 @@ function PatientHome() {
         </TouchableOpacity>
 
 
-        {/* ======================================================================================================== */}
-
-        <View style={styles.footer}>
-              <View style={styles.section}>
-                <Text style={styles.brand}>CLYVO VET</Text>
-                <Text style={styles.description}>
-                  A plataforma que cuida do seu pet!
-                </Text>
-              </View>
-        
-            
-              <View style={styles.section}>
-                <Text style={styles.title}>Seções</Text>
-                <TouchableOpacity onPress={() => {}}><Text style={styles.link}>Inicio</Text></TouchableOpacity>
-                <TouchableOpacity onPress={goToHomePets}><Text style={styles.link}>Pets</Text></TouchableOpacity>
-                <TouchableOpacity onPress={() => {}}><Text style={styles.link}>Sobre Nós</Text></TouchableOpacity>
-              </View>
-        
-        
-              <View style={styles.section}>
-                <Text style={styles.title}>Contato</Text>
-                <View style={styles.contactItem}>
-                  <Ionicons name="mail-outline" size={16} color="#bbb" />
-                  <Text style={styles.contactText}>clyvovet@gmail.com</Text>
-                </View>
-                <View style={styles.contactItem}>
-                  <Ionicons name="call-outline" size={16} color="#bbb" />
-                  <Text style={styles.contactText}>(11) 98765-4321</Text>
-                </View>
-              </View>
-        
-              
-              <View style={styles.socialRow}>
-                <TouchableOpacity style={styles.socialIcon} onPress={() => handleLink('https://instagram.com')}>
-                  <Ionicons name="logo-instagram" size={24} color="#fff" />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.socialIcon} onPress={() => handleLink('https://github.com')}>
-                  <Ionicons name="logo-whatsapp" size={24} color="#fff" />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.socialIcon} onPress={() => handleLink('https://linkedin.com')}>
-                  <Ionicons name="logo-linkedin" size={24} color="#fff" />
-                </TouchableOpacity>
-              </View>
-        
-              
-              <View style={styles.bottomBar}>
-                <Text style={styles.copyright}>
-                  © 2026 CLYVO. Todos os direitos reservados.
-                </Text>
-              </View>
-            </View>
-
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-export function PatientRoutes() {
+function PatientStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="PatientHome" component={PatientHome} />
       <Stack.Screen name="HomePets" component={HomePets} />
       <Stack.Screen name="RegisterPets" component={RegisterPets} />
     </Stack.Navigator>
+  )
+}
+
+export function PatientRoutes() {
+  return (
+    <Drawer.Navigator 
+      drawerContent={(props) => <PatientDrawerContent {...props} />}
+      screenOptions={{ headerShown: false }}
+    >
+      <Drawer.Screen name="PatientStack" component={PatientStack} />
+    </Drawer.Navigator>
   );
 }
 

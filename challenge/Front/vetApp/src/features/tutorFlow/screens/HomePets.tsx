@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { api } from "@/services/api";
 import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "@/app/navigation/types";
-import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
+import { useNavigation, useRoute, RouteProp, DrawerActions } from "@react-navigation/native";
 import { useAuth } from "@/features/auth/context/AuthContext";
 import { AxiosError } from "axios";
 import { Pets } from "../types";
@@ -26,13 +26,12 @@ export default function HomePets() {
     const route = useRoute<RouteProps>();
 
     const { user } = useAuth();
-    const { role } = route.params;
 
     const [animals, setAnimals] = useState<Pets[]>([])
     const [erro, setErro] = useState<string>()
 
     const goToRegisterPets = () => {
-        navigation.navigate("RegisterPets", { role:role, user:user })
+        navigation.navigate("RegisterPets", { user:user })
     }
 
 
@@ -62,7 +61,10 @@ export default function HomePets() {
         <SafeAreaView>
             <ScrollView>
                 <View style={styles.header}>
-                    <Ionicons name="menu" size={40} />
+                    <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
+                        <Ionicons name="menu" size={40} />
+                    </TouchableOpacity>
+                    
 
                     <TouchableOpacity onPress={goToRegisterPets}>
                         <Ionicons name="add-circle-outline" size={40} />

@@ -7,6 +7,6 @@ export type AuthStackParamList = {
   Register: { role: 'tutor' | 'veterinarian'}
   PatientHome: { role: 'tutor' | 'veterinarian',  user: User }
   HomePets: { role: "tutor" | undefined, user: User | null }
-  RegisterPets: { role: "tutor" | undefined, user:User | null }
+  RegisterPets: { user:User | null }
   VetHome: { role: "veterinarian" | undefined, user:User | null }
 }
