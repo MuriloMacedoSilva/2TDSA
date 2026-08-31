@@ -1,0 +1,78 @@
+DOCUMENTAÇÃO DO PROJETO DEVOPS
+
+1. DESCRIÇÃO DO PROJETO
+O sistema permite o cadastro e gerenciamento de tutores, veterinários e seus respectivos animais, fornecendo suporte para operações de CRUD e persistência de dados.
+
+2. BENEFÍCIOS PARA O NEGÓCIO
+- Digitalização da Gestão Veterinária: Automatiza o registro e a consulta de prontuários.
+- Escalabilidade: Arquitetura baseada em containers permite fácil escalabilidade em nuvem.
+- Agilidade: Operações de CRUD rápidas facilitam o atendimento em clínicas.
+
+3. DESENHO MACRO DA ARQUITETURA
+[Inserir aqui a imagem do desenho da arquitetura - Ferramentas sugeridas: Draw.io ou Visual Paradigm]
+
+4. ROTAS DA API
+- GET /tutor/ping: Health check.
+- POST /tutor: Criar Tutor.
+- GET /tutor/{cpf}: Buscar Tutor por CPF.
+- PUT /tutor/{cpf}/CreateAnimal: Adicionar Animal.
+- GET /tutor/{cpf}/ReadAnimals: Listar Animais.
+- POST /veterinarian: Criar Veterinário.
+
+5. INSTALAÇÃO DA SOLUÇÃO (HOW TO)
+Pré-requisitos: Docker e Docker Compose instalados.
+
+Execução com Docker:
+1. Clone o repositório.
+2. Navegue até a pasta do projeto.
+3. Execute: docker-compose up -d
+
+6. DOCKER COMPOSE
+version: '3.9'
+services:
+  api:
+    build: .
+    container_name: clyvovet-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - h2db
+  h2db:
+    image: oscarfonts/h2
+    container_name: clyvovet-h2
+    ports:
+      - "9090:9090"
+      - "81:81"
+    volumes:
+      - clyvovet-volume:/opt/h2-data
+volumes:
+  clyvovet-volume:
+
+7. SCRIPT AZURE CLI (provision.sh)
+#!/bin/bash
+RESOURCE_GROUP="rg-challenge-java"
+VM_NAME="vm-challenge-java"
+LOCATION="eastus"
+
+# 1. Criar Grupo de Recursos
+az group create --name $RESOURCE_GROUP --location $LOCATION
+
+# 2. Criar VM Linux
+az vm create \
+  --resource-group $RESOURCE_GROUP \
+  --name $VM_NAME \
+  --image Ubuntu2204 \
+  --admin-username azureuser \
+  --generate-ssh-keys
+
+# 3. Abrir Portas (8080 para API, 81/9090 para H2)
+az vm open-port --resource-group $RESOURCE_GROUP --name $VM_NAME --port 8080
+az vm open-port --resource-group $RESOURCE_GROUP --name $VM_NAME --port 81
+az vm open-port --resource-group $RESOURCE_GROUP --name $VM_NAME --port 9090
+
+# 4. Instalar Docker e Ferramentas
+az vm run-command invoke \
+  --resource-group $RESOURCE_GROUP \
+  --name $VM_NAME \
+  --command-id RunShellScript \
+  --scripts "sudo apt-get update && sudo apt-get install -y docker.io docker-compose git nano && sudo systemctl start docker && sudo systemctl enable docker && sudo usermod -aG docker azureuser"

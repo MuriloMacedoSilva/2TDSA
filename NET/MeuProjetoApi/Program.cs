@@ -21,6 +21,8 @@ app.MapGet("/products", () =>
     return products;
 });
 
+app.Run();
+
 record Product(int Id, string Name, decimal Price);
 
 record PatchProduct(string? Name, decimal? Price);
