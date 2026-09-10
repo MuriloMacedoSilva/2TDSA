@@ -2,6 +2,7 @@ package com.FirstApiChallenge.api.dto;
 
 import com.FirstApiChallenge.api.model.Tutor;
 import com.FirstApiChallenge.api.model.Veterinarian;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.Set;
@@ -16,8 +17,9 @@ public record VeterinarianResponseDTO(
         String role,
         String crmvNumber,
         String crmvState,
-        String cnpj,
-        Set<Tutor> tutors
+        String cnpj
+//        @JsonIgnore
+//        Set<Tutor> tutors
 ) {
     public static VeterinarianResponseDTO fromEntity (Veterinarian veterinarian) {
         return new VeterinarianResponseDTO(
@@ -30,7 +32,7 @@ public record VeterinarianResponseDTO(
                 veterinarian.getRole(),
                 veterinarian.getCrmvNumber(),
                 veterinarian.getCrmvState(),
-                veterinarian.getCnpj(),
-                veterinarian.getTutors());
+                veterinarian.getCnpj());
+//                veterinarian.getTutors());
     }
 }
